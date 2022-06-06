@@ -1,0 +1,28 @@
+*{
+	margin:0;
+}
+.slick-prev {
+    margin-left: 2% !important;
+	z-index: 1;
+}
+
+.slick-next {
+margin-left: 20px !important;
+right: 1% !important;
+
+}
+.slick-slide img{
+	height:"100%";
+	width:"100%";
+
+}
+#slider-container .slider {
+	overflow: initial;
+}
+.slick-slide {
+	/* ... */
+	position: relative;
+}
+
+/* the parent */
+
