@@ -17,17 +17,17 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CarouselItem from "../CarouselItem"
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import AliBedni from "../images/AliBedni.png";
-import BaliPass from "../images/BaliPass.png";
-import BeasKund from "../images/BeasKund.png";
+import camera from "../images/camera.png"
+import communitySection from "../images/communitySection.png"
 import CarouselImage from "../images/CarouselImage.png"
-import DayaraBugyal from "../images/DayaraBugyal.png";
-import Gaumukh from "../images/Gaumukh.png";
-import Goechala from "../images/Goechala.png";
 import {images} from "../StaticData/StaticImages"
 import Slider from "react-slick";
+import Link from "@mui/material/Link";
+import {
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,7 +62,7 @@ function SamplePrevArrow(props) {
  const settings = {
    dots: true,
    focusOnSelect: true,
-   slidesToShow: 3,
+   slidesToShow: 4,
    slidesToScroll: 1,
    infinite: true,
    autoplay:true,
@@ -99,6 +99,8 @@ function Home() {
   const [value, setValue] = React.useState("ALL TREKS");
   const [age, setAge] = React.useState("CONTRIBUTE PHOTOS");
     const [expanded, setExpanded] = React.useState("panel1");
+	const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -126,11 +128,15 @@ function Home() {
 
   return (
     <>
-      <Grid item container xs={12} spacing={2}>
+      <Grid item container xs={12}>
         <Grid item xs={12}>
           <Card sx={{ maxWidth: "100%" }}>
             <Box sx={{ position: "relative" }}>
-              <CardMedia component="img" height="621" image={bannerimage} />
+              <CardMedia
+                component="img"
+                height={isMobile ? "300" : "621"}
+                image={bannerimage}
+              />
               <Box
                 sx={{
                   position: "absolute",
@@ -143,118 +149,156 @@ function Home() {
                 }}
               >
                 <Typography variant="h5">
+                  <span className={classes.bannerText}>TREK</span>
                   <span
-                    style={{
-                      color: "#ffffff",
-                      marginRight: "10px",
-                      fontFamily: "Roboto",
-                      fontSize: 96,
-                      fontStyle: "bold",
-                    }}
-                  >
-                    TREK
-                  </span>
-                  <span
+                    className={classes.bannerText}
                     style={{
                       color: "#F6C243",
-                      fontFamily: "Roboto",
-                      fontSize: 96,
-                      fontStyle: "bold",
                     }}
                   >
                     GALLERY
                   </span>
                 </Typography>
-                <Typography
-                  variant="span"
-                  style={{
-                    color: "#ffffff",
-                    fontFamily: "Roboto",
-                    fontSize: 36,
-                    fontStyle: "bold",
-                  }}
-                >
+                <Typography variant="span" className={classes.bannerSubTitle}>
                   Reliving treks through photographs
                 </Typography>
               </Box>
             </Box>
           </Card>
         </Grid>
-        <Typography
-          variant="body2"
-          style={{
-            color: "#ffffff",
-            textAlign: "center",
-            marginLeft: "205px",
-            fontFamily: "Open Sans",
-            fontSize: "16px",
-            width: "1025px",
-            height: "85px",
-            lineHeight: "28.1px",
-          }}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          ante elit, facilisis ut nisi vel, cursus faucibus eros. Aenean
-          facilisis rutrum iaculis. In nec ornare nibh. Pellentesque bibendum
-          dolor fermentum, suscipit ante vel, ultricies elit. Donec feugiat
-          dolor consectetur ligula pulvinar varius. Nunc eu urna ipsum. Donec
-          quis dui at dui tincidunt egestas molestie nec mauris. Vestibulum ex
-          elit,
-        </Typography>
+        {!isMobile && (
+          <Typography
+            variant="body2"
+            style={{
+              color: "#ffffff",
+              textAlign: "center",
+              marginLeft: "205px",
+              fontFamily: "Open Sans",
+              fontSize: "16px",
+              width: "1025px",
+              height: "85px",
+              lineHeight: "28.1px",
+            }}
+          >
+            Present your images in an environment of like-minded people who like
+            to engage with you and your creative works! Your photo, the story or
+            your thoughts about it and technical details inspire others. Because
+            you and your images are a valuable part of our community.
+          </Typography>
+        )}
         <Grid item container xs={12}>
           <Grid
             item
+            container
             xs={12}
-            sx={{ paddingLeft: "32px", paddingRight: "32px", overflow: "auto" }}
+            wrap="wrap"
+            sx={{
+              paddingLeft: { xs: "12px", md: "32px" },
+              paddingRight: { xs: "10px", md: "32px" },
+            }}
           >
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="wrapped label tabs example"
-            >
-              <Tab
-                value="ALL TREKS"
-                label="ALL TREKS"
-                wrapped
-                {...a11yProps("ALL TREKS")}
-                className={classes.style}
-              />
-              <Tab
-                value="WINTER"
-                label="WINTER"
-                {...a11yProps("WINTER")}
-                className={classes.style}
-              />
-              <Tab
-                value="SUMMER"
-                label="SUMMER"
-                {...a11yProps("SUMMER")}
-                className={classes.style}
-              />
-              <Tab
-                value="MONSOON"
-                label="MONSOON"
-                {...a11yProps("MONSOON")}
-                className={classes.style}
-              />
-              <Tab
-                value="AUTUMN"
-                label="AUTUMN"
-                {...a11yProps("AUTUM")}
-                className={classes.style}
-              />
-            </Tabs>
+            {isMobile ? (
+              <Grid item container xs={12} spacing={2}>
+                <Grid item xs={12}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="wrapped label tabs example"
+                  >
+                    <Tab
+                      value="ALL TREKS"
+                      label="ALL TREKS"
+                      wrapped
+                      {...a11yProps("ALL TREKS")}
+                      className={classes.style}
+                    />
+                    <Tab
+                      value="WINTER"
+                      label="WINTER"
+                      {...a11yProps("WINTER")}
+                      className={classes.style}
+                    />
+                    <Tab
+                      value="SUMMER"
+                      label="SUMMER"
+                      {...a11yProps("SUMMER")}
+                      className={classes.style}
+                    />
+                  </Tabs>
+                </Grid>
+                <Grid item xs={12}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="wrapped label tabs example"
+                  >
+                    <Tab
+                      value="MONSOON"
+                      label="MONSOON"
+                      {...a11yProps("MONSOON")}
+                      className={classes.style}
+                    />
+                    <Tab
+                      value="AUTUMN"
+                      label="AUTUMN"
+                      {...a11yProps("AUTUM")}
+                      className={classes.style}
+                    />
+                  </Tabs>
+                </Grid>
+              </Grid>
+            ) : (
+              <Grid item xs={12}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="wrapped label tabs example"
+                >
+                  <Tab
+                    value="ALL TREKS"
+                    label="ALL TREKS"
+                    wrapped
+                    {...a11yProps("ALL TREKS")}
+                    className={classes.style}
+                  />
+                  <Tab
+                    value="WINTER"
+                    label="WINTER"
+                    {...a11yProps("WINTER")}
+                    className={classes.style}
+                  />
+                  <Tab
+                    value="SUMMER"
+                    label="SUMMER"
+                    {...a11yProps("SUMMER")}
+                    className={classes.style}
+                  />
+                  <Tab
+                    value="MONSOON"
+                    label="MONSOON"
+                    {...a11yProps("MONSOON")}
+                    className={classes.style}
+                  />
+                  <Tab
+                    value="AUTUMN"
+                    label="AUTUMN"
+                    {...a11yProps("AUTUM")}
+                    className={classes.style}
+                  />
+                </Tabs>
+              </Grid>
+            )}
           </Grid>
           <Grid item xs={12} sx={{ marginTop: "20px" }}>
             <TabPanel value={value} index="ALL TREKS">
-              <Grid item container xs={12} spacing={2}>
+              <Grid item container xs={12} spacing={isMobile ? 1 : 2}>
                 {allTreks.map((trek, index) => (
-                  <Grid item xs={4} xl={3}>
+                  <Grid item xs={6} md={4} lg={4} xl={3}>
                     <Card sx={{ maxWidth: "100%" }} className={classes.card}>
                       <Box sx={{ position: "relative" }}>
                         <CardMedia
                           component="img"
-                          height="253.81"
+                          sx={{ height: { xs: 98.03, md: 253.81 } }}
                           image={trek.image}
                         />
                         <Box
@@ -269,14 +313,7 @@ function Home() {
                         >
                           <Typography
                             variant="h1"
-                            style={{
-                              color: "#FFFFFF",
-                              marginRight: "10px",
-                              fontFamily: "Roboto",
-                              fontSize: 24,
-                              textShadow: "1px 0px #ffffff",
-                              fontStyle: "bold",
-                            }}
+                            className={classes.tabTextStyle}
                           >
                             {trek.trekName}
                           </Typography>
@@ -288,14 +325,14 @@ function Home() {
               </Grid>
             </TabPanel>
             <TabPanel value={value} index="WINTER">
-              <Grid item container xs={12} spacing={2}>
+              <Grid item container xs={12} spacing={isMobile ? 1 : 2}>
                 {allTreks.map((trek, index) => (
-                  <Grid item xs={4} xl={3}>
+                  <Grid item xs={6} md={4} lg={4} xl={3}>
                     <Card sx={{ maxWidth: "100%" }} className={classes.card}>
                       <Box sx={{ position: "relative" }}>
                         <CardMedia
                           component="img"
-                          height="253.81"
+                          sx={{ height: { xs: 98.03, md: 253.81 } }}
                           image={trek.image}
                         />
                         <Box
@@ -310,14 +347,7 @@ function Home() {
                         >
                           <Typography
                             variant="h1"
-                            style={{
-                              color: "#FFFFFF",
-                              marginRight: "10px",
-                              fontFamily: "Roboto",
-                              fontSize: 24,
-                              textShadow: "1px 0px #ffffff",
-                              fontStyle: "bold",
-                            }}
+                            className={classes.tabTextStyle}
                           >
                             {trek.trekName}
                           </Typography>
@@ -340,31 +370,22 @@ function Home() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
+          <Card sx={{ maxWidth: "100%" }}>
+            <CardMedia
+              component="img"
+              image={communitySection}
+
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
           <Card sx={{ maxWidth: "100%" }} className={classes.communityCard}>
-            <Grid item container xs={12}>
+            <Grid item container xs={12} spacing={2}>
               <Grid item xs={12}>
-                <h1
-                  style={{
-                    fontFamily: "Roboto",
-                    fontSize: 48,
-                    color: "#000000",
-                    fontStyle: "bold",
-                  }}
-                >
-                  COMMUNITY
-                </h1>
+                <h1 className={classes.communityText}>COMMUNITY</h1>
               </Grid>
               <Grid item xs={12}>
-                <Typography
-                  variant="body1"
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontSize: 18,
-                    width: "1012px",
-                    height: "151px",
-                    color: "#000000",
-                  }}
-                >
+                <Typography variant="body1" className={classes.communityPara}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Pellentesque ante elit, facilisis ut nisi vel, cursus faucibus
                   eros. Aenean facilisis rutrum iaculis. In nec ornare nibh.
@@ -374,19 +395,21 @@ function Home() {
                   tincidunt egestas molestie nec mauris. Vestibulum ex elit,
                 </Typography>
               </Grid>
-              <Grid item container xs={12}>
-                <Grid item xs={4} flexDirection="column">
+              <Grid item container xs={12} spacing={2}>
+                <Grid item xs={12} md={4} lg={4} xl={4} flexDirection="column">
                   <Accordion
                     sx={{
                       backgroundColor: "#4B4B4D",
                       color: "#ffffff",
-                      width: 387,
+                      width: { xs: 321, md: 387 },
+                      marginLeft: { xs: "25px", md: "0px" },
                       ...(expanded === "panel1" && {
                         color: "#000",
                         backgroundColor: "#F6C243",
                       }),
                     }}
                     expanded={expanded === "panel1"}
+                    classes={{ expanded: classes.expanded }}
                     onChange={handleAccordingChange("panel1")}
                   >
                     <AccordionSummary
@@ -396,8 +419,18 @@ function Home() {
                     >
                       <Typography>1.CONTRIBUTE PHOTOS</Typography>
                     </AccordionSummary>
-                    <AccordionDetails sx={{ backgroundColor: "#E3E3E3" }}>
-                      <Typography sx={{ fontFamily: "Roboto", fontSize: 18 }}>
+                    <AccordionDetails
+                      sx={{
+                        backgroundColor: "#E3E3E3",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                          marginLeft: { xs: "20px", md: "0px" },
+                        }}
+                      >
                         We'd love to see where you have been exploring. If you
                         have lots of photos you would like to share you can send
                         us a couple of samples and we’ll consider featuring your
@@ -410,13 +443,15 @@ function Home() {
                       backgroundColor: "#4B4B4D",
                       marginTop: "10px",
                       color: "#ffffff",
-                      width: 387,
+                      marginLeft: { xs: "25px", md: "0px" },
+                      width: { xs: 321, md: 387 },
                       ...(expanded === "panel2" && {
                         color: "#000",
                         backgroundColor: "#F6C243",
                       }),
                     }}
                     expanded={expanded === "panel2"}
+                    classes={{ expanded: classes.expanded }}
                     onChange={handleAccordingChange("panel2")}
                   >
                     <AccordionSummary
@@ -439,13 +474,15 @@ function Home() {
                       backgroundColor: "#4B4B4D",
                       marginTop: "10px",
                       color: "#ffffff",
-                      width: 387,
+                      width: { xs: 321, md: 387 },
+                      marginLeft: { xs: "25px", md: "0px" },
                       ...(expanded === "panel3" && {
                         color: "#000",
                         backgroundColor: "#F6C243",
                       }),
                     }}
                     expanded={expanded === "panel3"}
+                    classes={{ expanded: classes.expanded }}
                     onChange={handleAccordingChange("panel3")}
                   >
                     <AccordionSummary
@@ -464,8 +501,8 @@ function Home() {
                     </AccordionDetails>
                   </Accordion>
                 </Grid>
-                <Grid item xs={8}>
-                  <Carousel sx={{ width: 716 }}>
+                <Grid item xs={12} md={8} lg={8} xl={8}>
+                  <Carousel sx={{ width: { xs: "100%", md: 716 } }}>
                     {items.map((item, i) => (
                       <CarouselItem key={i} item={item} />
                     ))}
@@ -477,9 +514,14 @@ function Home() {
         </Grid>
         <Grid item xs={12}>
           <Card sx={{ maxWidth: "100%" }} className={classes.imageCard}>
-            <Grid item container xs={12} sx={{ pt: 2 ,pl:2}}>
+            <Grid item container xs={12} sx={{ pt: 2, pl: { xs: 0, md: 2 } }}>
               <Grid item xs={12}>
-                <Typography variant="h4">OTHER PHOTOS</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{ pl: { xs: 2, md: 0 }, pb: { xs: 2, md: 0 } }}
+                >
+                  OTHER PHOTOS
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <Slider {...settings}>
@@ -517,6 +559,197 @@ function Home() {
                   ))}
                 </Slider>
               </Grid>
+            </Grid>
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card
+            sx={{ maxWidth: "100%" }}
+            className={classes.footerCard}
+            sx={{
+              pt: { xs: "10px", md: 3 },
+              pl: { xs: "31px", md: 20 },
+              fontSize: { xs: "14px", md: "18px" },
+            }}
+          >
+            <Grid item container xs={12} justifyContent="space-between">
+              {isMobile ? (
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  justifyContent="space-between"
+                  flexDirection="column"
+                >
+                  <Link
+                    href="https://indiahikes.com/"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    <span>Visit </span>
+                    <span style={{ color: "rgba(255,193,0,1)" }}>
+                      Indiahikes{" "}
+                    </span>
+                    <span>Site</span>
+                  </Link>
+                  <Link
+                    href="/About-us"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    About Us
+                  </Link>
+                  <Link
+                    href="/About-us"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    View Documented Treks
+                  </Link>
+                  <Link
+                    href="https://indiahikes.com/"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    <span>Become a part of our </span>
+                    <span style={{ color: "rgba(255,193,0,1)" }}>
+                      Community
+                    </span>
+                  </Link>
+                  <Link
+                    href="/About-us"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    Contribute Photos
+                  </Link>
+                  <Link
+                    href="/About-us"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    Become a Phototrekker
+                  </Link>
+                  <Link
+                    href="/About-us"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    Photography Competition
+                  </Link>
+                  <Link
+                    href="https://indiahikes.com/"
+                    variant="string"
+                    style={{ fontFamily: "Roboto" }}
+                    underline="none"
+                  >
+                    <span>Discover </span>
+                    <span style={{ color: "rgba(255,193,0,1)" }}>
+                      Photography
+                    </span>
+                  </Link>
+                </Grid>
+              ) : (
+                <Grid item container xs={12} justifyContent="space-between">
+                  <Grid item xs={4} container flexDirection="column">
+                    <Link
+                      href="https://indiahikes.com/"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      <span>Visit </span>
+                      <span style={{ color: "rgba(255,193,0,1)" }}>
+                        Indiahikes{" "}
+                      </span>
+                      <span>Site</span>
+                    </Link>
+                    <Link
+                      href="/About-us"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      About Us
+                    </Link>
+                    <Link
+                      href="/About-us"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      View Documented Treks
+                    </Link>
+                  </Grid>
+                  <Grid item xs={4} container flexDirection="column">
+                    <Link
+                      href="https://indiahikes.com/"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      <span>Become a part of our </span>
+                      <span style={{ color: "rgba(255,193,0,1)" }}>
+                        Community
+                      </span>
+                    </Link>
+                    <Link
+                      href="/About-us"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      Contribute Photos
+                    </Link>
+                    <Link
+                      href="/About-us"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      Become a Phototrekker
+                    </Link>
+                    <Link
+                      href="/About-us"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      Photography Competition
+                    </Link>
+                  </Grid>
+                  <Grid item xs={4} container flexDirection="column">
+                    <Link
+                      href="https://indiahikes.com/"
+                      variant="string"
+                      style={{ fontFamily: "Roboto" }}
+                      underline="none"
+                    >
+                      <span>Discover </span>
+                      <span style={{ color: "rgba(255,193,0,1)" }}>
+                        Photography
+                      </span>
+                    </Link>
+                    <div style={{ display: "flex" }}>
+                      <img
+                        src={camera}
+                        style={{
+                          width: "140px",
+                          height: "148px",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </div>
+                  </Grid>
+                </Grid>
+              )}
             </Grid>
           </Card>
         </Grid>

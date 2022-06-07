@@ -6,7 +6,7 @@ const darkTheme = createTheme({
       paper: "#000",
     },
     primary: {
-      main: "#000",
+      main: "#fff",
     },
 	text:{
 		primary:"#ffffff"

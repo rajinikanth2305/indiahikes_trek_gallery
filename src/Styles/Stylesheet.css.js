@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-
 const styles = makeStyles(
   (theme) => ({
     textColor: {
@@ -9,6 +8,33 @@ const styles = makeStyles(
     navlinks: {
       display: "flex",
       flexGrow: 1,
+    },
+    bannerText: {
+      marginRight: "10px",
+      fontFamily: "Roboto",
+      fontSize: 96,
+      fontWeight: "bold",
+      [theme.breakpoints.only("xs")]: {
+        fontFamily: "Roboto",
+        fontSize: 32,
+        fontWeight: "bold",
+      },
+    },
+    expanded: {
+      [theme.breakpoints.only("xs")]: {
+        marginLeft: "25px !important",
+      },
+    },
+    bannerSubTitle: {
+      fontFamily: "Roboto",
+      fontSize: 36,
+      fontWeight: "bold",
+      [theme.breakpoints.only("xs")]: {
+        fontFamily: "Open Sans",
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#F6C243",
+      },
     },
     logo: {
       cursor: "pointer",
@@ -23,6 +49,11 @@ const styles = makeStyles(
       marginTop: "5px",
       flexGrow: 1,
     },
+    footerCard: {
+      backgroundColor: "#3A3636",
+      height: 200,
+      marginBottom: "50px",
+    },
     navBarLogo: {
       cursor: "pointer",
       objectFit: "contain",
@@ -36,7 +67,8 @@ const styles = makeStyles(
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      backgroundColor: "green",
+      backgroundColor: "#000",
+      fontFamily: "Open Sans",
     },
     drawer: {
       width: "100%",
@@ -44,17 +76,64 @@ const styles = makeStyles(
       whiteSpace: "nowrap",
     },
     card: {
+      border: "none",
+      borderRadius: "0px",
       transition: "transform 0.15s ease-in-out",
       "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     },
+    tabTextStyle: {
+      marginRight: "10px",
+      fontFamily: "Roboto",
+      fontSize: 24,
+      textShadow: "1px 0px #ffffff",
+      fontWeight: "bold",
+      [theme.breakpoints.only("xs")]: {
+        fontFamily: "Roboto",
+        fontSize: 14,
+        textShadow: "1px 0px #ffffff",
+        fontWeight: "bold",
+      },
+    },
     communityCard: {
       backgroundColor: "#E3E3E3",
-      height: 858.33,
+      //height: 858.33,
       paddingLeft: 105,
+      [theme.breakpoints.only("xs")]: {
+        paddingLeft: 0,
+        //height: 930.33,
+      },
+    },
+    communityText: {
+      fontFamily: "Roboto",
+      fontSize: 48,
+      color: "#000000",
+      fontStyle: "bold",
+      [theme.breakpoints.only("xs")]: {
+        fontFamily: "Roboto",
+        fontSize: 24,
+        color: "#000000",
+        fontStyle: "bold",
+        paddingLeft: 25,
+      },
+    },
+    communityPara: {
+      fontFamily: "Open Sans",
+      fontSize: 18,
+      width: "1012px",
+      height: "151px",
+      color: "#000000",
+      [theme.breakpoints.only("xs")]: {
+        fontFamily: "Open Sans",
+        fontSize: 16,
+        width: "314px",
+        height: "202px",
+        color: "#000000",
+        paddingLeft: 25,
+      },
     },
     imageCard: {
       backgroundColor: "#000",
-      height: 800,
+      marginBottom: "40px",
     },
     menuBackground: {
       backgroundColor: "#ffffff",
@@ -83,15 +162,50 @@ const styles = makeStyles(
         fontSize: "32px",
         fontFamily: "Roboto",
       },
+      [theme.breakpoints.only("xs")]: {
+        backgroundColor: "#3A3636" /* Green */,
+        border: "none",
+        color: "white",
+        textAlign: "center",
+        marginRight: "15px",
+        textDecoration: "none",
+        display: "inline-block",
+        fontSize: "14px",
+        fontFamily: "Roboto",
+        height: 29,
+        width: 109,
+        "&.Mui-selected": {
+          backgroundColor: "#F6c243",
+          border: "none",
+          color: "#000000",
+          textAlign: "center",
+          textDecoration: "none",
+          display: "inline-block",
+          fontSize: "14px",
+          fontFamily: "Roboto",
+        },
+      },
     },
     link: {
       textDecoration: "none",
       color: "white",
       fontSize: "20px",
+      fontFamily: "Open Sans",
       marginLeft: theme.spacing(5),
       "&:hover": {
         color: "#F6c243",
         borderBottom: "1px solid #F6c243",
+      },
+      [theme.breakpoints.only["xs"]]: {
+        textDecoration: "none",
+        color: "white",
+        fontSize: "12px",
+        fontFamily: "Open Sans",
+        fontStyle: "bold",
+        "&:hover": {
+          color: "#F6c243",
+          borderBottom: "1px solid #F6c243",
+        },
       },
     },
   }),
